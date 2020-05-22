@@ -9,11 +9,18 @@ const pool = new Pool({
 
 //GET movies
 const getMovies = (request, response) => {
-  pool.query("SELECT * FROM playlist", (error, results) => {
-    if(error)
-      throw error
-    response.status(200).json(results.rows)
-  })
+  if (request.query.title) {
+    pool.query("SELECT * FROM playlist WHERE title ILIKE $1", [`%${request.query.title}%`], (error, results) => {
+      if (error) throw error;
+      response.status(200).json(results.rows);
+    });
+
+  } else {
+    pool.query("SELECT * FROM playlist", (error, results) => {
+      if (error) throw error;
+      response.status(200).json(results.rows);
+    });
+  }
 }
 
 //GET movie by id

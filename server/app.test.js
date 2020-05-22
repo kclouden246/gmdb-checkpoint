@@ -21,20 +21,6 @@ test("GET /movies", async done => {
   })
 
 test("GET /reviews/:id", async done => {
-    // supertest(app)
-    //     .get("/reviews/2")
-    //     .set('Content-Type', 'application/json')
-    //     .expect('Content-Type', 'application/json; charset=utf-8')
-    //     .expect(200)
-    //     .then(response => {
-    //         console.log(response.body.length)
-    //         assert(response.body.length, 2)
-    //     })
-    //     .end(function(err, res) {
-    //       if(err) 
-    //         return done(err)
-    //       done()
-    //     })
     const res = await request.get("/reviews/2");
     let expected = res.body.length;
     expect(expected).toEqual(2);
@@ -73,4 +59,11 @@ test("POST /register", async done => {
             return done(err)
           done()
         })
+})
+
+test("GET /movie?search", async done => {
+    const res = await request.get("/movies?title=Toy");
+    let expected = res.body.length;
+    expect(expected).toEqual(4);
+    done();    
 })
