@@ -18,14 +18,15 @@ app.get('/',(req,res) => {
 app.get('/movies', db.getMovies)
 
 //GET movie by id
-
+app.get("/movies/:id", db.getMovieById)
 
 //Get review by id
-
+app.get("/reviews/:id", db.getMovieReviewById)
 
 //POST review
-
 
 //Create new movie
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+
+module.exports = app

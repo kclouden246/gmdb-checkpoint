@@ -17,9 +17,27 @@ const getMovies = (request, response) => {
 }
 
 //GET movie by id
+const getMovieById = (request, response) => {
+  const id = parseInt(request.params.id);
 
+  pool.query("SELECT * FROM playlist WHERE id = $1", [id], (error, results) => {
+    if(error)
+      throw error
+    response.status(200).json(results.rows)
+  })
+}
 
 //Get review by id
+const getMovieReviewById = (request, response) => {
+  const id = parseInt(request.params.id)
+  
+  pool.query("SELECT * FROM reviews WHERE id = $1", [id], (error, results) => {
+    if(error)
+      throw error
+    response.status(200).json(results.rows)
+  })
+  
+}
 
 
 //POST review
@@ -28,4 +46,4 @@ const getMovies = (request, response) => {
 //Create new movie
 
 
-module.exports = {getMovies}
+module.exports = {getMovies, getMovieById, getMovieReviewById}
