@@ -41,9 +41,22 @@ const getMovieReviewById = (request, response) => {
 
 
 //POST review
+const addReview = (request, response) => {
+  const {id, review} = request.body
 
+    pool.query(
+      "INSERT INTO reviews (id, review) VALUES ($1, $2)",
+      [id, review],
+      (error, results) => {
+        if (error) 
+          throw error;
+        response.status(201).send("Review Added");
+      }
+    );
+  
+}
 
 //Create new movie
 
 
-module.exports = {getMovies, getMovieById, getMovieReviewById}
+module.exports = {getMovies, getMovieById, getMovieReviewById, addReview}

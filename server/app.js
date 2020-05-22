@@ -24,6 +24,7 @@ app.get("/movies/:id", db.getMovieById)
 app.get("/reviews/:id", db.getMovieReviewById)
 
 //POST review
+app.post("/reviews", db.addReview)
 
 //Create new movie
 

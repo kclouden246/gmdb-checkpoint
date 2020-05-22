@@ -41,3 +41,20 @@ test("GET /reviews/:id", async done => {
     done();    
 
 })
+
+test("POST /reviews", async done => {
+    supertest(app)
+        .post("/reviews")
+        .send({
+            id: 7,
+            review: "Something"
+        })
+        .set('Accept', 'application/json')
+        //.expect('Content-Type', '/json')
+        .expect(201)
+        .end(function(err, res) {
+          if(err) 
+            return done(err)
+          done()
+        })
+})
