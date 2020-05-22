@@ -57,6 +57,18 @@ const addReview = (request, response) => {
 }
 
 //Create new movie
+const registerMovie = (request, response) => {
+  const {id, title, synposis} = request.body
 
+  pool.query(
+    "INSERT INTO playlist (id, title, synposis) VALUES ($1, $2, $3)",
+    [id, title, synposis],
+    (error, results) => {
+      if (error) 
+        throw error;
+      response.status(201).send("Movie Added");
+    }
+  );
+}
 
-module.exports = {getMovies, getMovieById, getMovieReviewById, addReview}
+module.exports = {getMovies, getMovieById, getMovieReviewById, addReview, registerMovie}

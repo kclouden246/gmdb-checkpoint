@@ -27,6 +27,7 @@ app.get("/reviews/:id", db.getMovieReviewById)
 app.post("/reviews", db.addReview)
 
 //Create new movie
+app.post("/register", db.registerMovie)
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
